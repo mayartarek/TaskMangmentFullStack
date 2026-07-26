@@ -1,0 +1,38 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+# Visual Studio
+.vs/
+
+# Build folders
+**/bin/
+**/obj/
+
+# User files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build artifacts
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# Logs
+*.log
+
+# ASP.NET generated files
+wwwroot/images/
+
+
+
+# NuGet
+*.nupkg
+packages/
+
+# OS files
+.DS_Store
+Thumbs.db
+/BackEnd/Demo.Api/wwwroot/images
