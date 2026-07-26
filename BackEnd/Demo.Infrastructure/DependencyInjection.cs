@@ -15,7 +15,6 @@ namespace Demo.Infrastructure
             services.AddDbContext<DemoDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DemoContext")));
             var dataContext = services.BuildServiceProvider().GetRequiredService<DemoDbContext>();
-            dataContext.Database.EnsureCreated();
             services.AddScoped(typeof(IRepositoryPattern<>), typeof(Presintance.Repoitory.Repository<>));
             return services;
         }
