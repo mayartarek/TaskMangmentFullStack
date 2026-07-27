@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Demo.Application.Features.Project.Command.CreateProjectCommand
 {
-    public class UpdateProjectCommand : IRequest<bool>
+    public class CreateProjectCommand : IRequest<bool>
     {
         public string Name { get; set; }
         public string Description { get; set; }

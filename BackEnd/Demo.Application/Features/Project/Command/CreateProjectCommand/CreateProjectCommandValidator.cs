@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Demo.Application.Features.Project.Command.CreateProjectCommand
 {
-    public class UpdateProjectCommandValidator:AbstractValidator<UpdateProjectCommand>
+    public class CreateProjectCommandValidator:AbstractValidator<CreateProjectCommand>
     {
-        public UpdateProjectCommandValidator()
+        public CreateProjectCommandValidator()
         {
                 RuleFor(x => x.Name)
                     .NotEmpty().WithMessage("Project name is required.")

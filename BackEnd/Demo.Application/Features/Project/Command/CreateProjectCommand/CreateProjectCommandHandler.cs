@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Demo.Application.Features.Project.Command.CreateProjectCommand
 {
-    public class UpdateProjectCommandHandler : IRequestHandler<UpdateProjectCommand, bool>  
+    public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, bool>  
     {
         private readonly IRepositoryPattern<Demo.Domain.Entities.Project> _repository;
 
-        public UpdateProjectCommandHandler(IRepositoryPattern<Demo.Domain.Entities.Project> repository)
+        public CreateProjectCommandHandler(IRepositoryPattern<Demo.Domain.Entities.Project> repository)
         {
             _repository = repository;
         }
 
-        public async Task<bool> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
             var validator = new CreateProjectCommandValidator();
             var validationResult = validator.Validate(request);
