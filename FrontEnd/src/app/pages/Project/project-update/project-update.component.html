@@ -1,0 +1,17 @@
+<div class="form-container">
+  <h2>Update Product</h2>
+
+  <form [formGroup]="form" (ngSubmit)="updateProject()">
+  
+    <div class="field">
+      <label>Name</label>
+      <input type="text" formControlName="name" />
+    </div>
+
+    <div class="field">
+      <label>Description</label>
+      <input type="text" formControlName="description" />
+    </div>
+    <button type="submit">Update</button>
+  </form>
+</div>

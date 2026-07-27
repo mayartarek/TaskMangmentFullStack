@@ -63,9 +63,9 @@ namespace Demo.Api.Controller
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> DeleteProject([FromBody] DeleteProjectCommand command)
+        public async Task<IActionResult> DeleteProject([FromQuery] Guid id)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(new DeleteProjectCommand { Id = id });
             return Ok(result);
         }
 

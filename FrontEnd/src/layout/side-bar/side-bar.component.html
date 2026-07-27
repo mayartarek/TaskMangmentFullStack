@@ -1,0 +1,12 @@
+<div class="sidebar" [class.collapsed]="collapsed">
+
+  <h3 *ngIf="!collapsed">Menu</h3>
+
+  <a [routerLink]="['/project/project']" routerLinkActive="active">
+    📊 <span *ngIf="!collapsed">Project List</span>
+  </a>
+
+
+
+
+</div>
