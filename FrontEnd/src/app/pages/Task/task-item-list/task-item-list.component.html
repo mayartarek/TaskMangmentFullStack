@@ -1,0 +1,49 @@
+<div class="container-lg mt-5">
+
+    <button (click)="addItem()" >
+      + Add TaskItem
+    </button>
+  <h2 class="mb-4">TaskItem List</h2>
+
+  <div *ngIf="TaskItemItems.length === 0" class="alert alert-info">
+    No TaskItems available
+  </div>
+
+  <div *ngIf="TaskItemItems.length > 0">
+
+    <table class="table table-bordered align-middle list">
+      <thead class="table-dark">
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Actions</th>
+         
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+    <tr *ngFor="let TaskItem of TaskItemItems | paginate: {
+          itemsPerPage: size,
+          currentPage: page,
+          totalItems: count
+      }">
+          <td>{{TaskItem.title}}</td>
+
+          <td>{{TaskItem.description}}</td>
+
+<td>
+            <button (click)="editItem(TaskItem.id)" class="btn btn-primary">Edit</button>
+            <button (click)="deleteItem(TaskItem.id)" class="btn btn-danger">Delete</button>
+          </td>
+        
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+<pagination-controls
+    (pageChange)="page = $event">
+</pagination-controls>
+</div>

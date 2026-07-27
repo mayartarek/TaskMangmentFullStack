@@ -1,0 +1,27 @@
+<div class="form-container">
+  <h2>Create Task Item</h2>
+
+  <form [formGroup]="form" (ngSubmit)="createTaskItem()">
+  
+    <div class="field">
+      <label>Title</label>
+      <input type="text" formControlName="title" />
+    </div>
+
+    <div class="field">
+      <label>Description</label>
+      <input type="text" formControlName="description" />
+    </div>
+    <div class="field">
+      <label>Due Date</label>
+      <input type="date" formControlName="dueDate" />
+    </div>
+    <div class="field"> 
+      <label>Project</label>
+      <select formControlName="projectId" class="project-select">
+        <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
+      </select>
+    </div>
+    <button type="submit">Create</button>
+  </form>
+</div>

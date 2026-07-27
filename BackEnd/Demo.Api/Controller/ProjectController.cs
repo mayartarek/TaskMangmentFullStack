@@ -3,6 +3,8 @@ using Demo.Application.Features.Project.Command.DeleteProjectCommand;
 using Demo.Application.Features.Project.Command.UpdateProjectCommand;
 using Demo.Application.Features.Project.Query.GetProjectDetails;
 using Demo.Application.Features.Project.Query.GetProjectList;
+using Demo.Application.Features.Project.Query.GetProjectListLookup;
+using Demo.Application.Features.TaskItem.Query.GetTaskListByStatus;
 using Demo.Application.Helper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -86,6 +88,7 @@ namespace Demo.Api.Controller
 
             return Ok(response);
         }
+      
         /// <summary>
         /// 
         /// </summary>
@@ -99,6 +102,16 @@ namespace Demo.Api.Controller
         public async Task<ActionResult<GetProjectDetailsDto>> GetById([FromQuery] Guid id)
         {
             var response = await _mediator.Send(new GetProjectDetailsQuery() { Id = id });
+            return Ok(response);
+        }
+        [HttpGet("LookUp")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(List<ProjectLookupDto>), StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult<List<ProjectLookupDto>>> GetLookUp()
+        {
+            var response = await _mediator.Send(new GetProjectListLookupQuery());
             return Ok(response);
         }
     }

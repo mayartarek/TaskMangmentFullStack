@@ -1,6 +1,7 @@
 ﻿using Demo.Application.Features.TaskItem.Command.DeleteTaskItemCommand;
 using Demo.Application.Features.TaskItem.Query.GetTaskItedDetails;
 using Demo.Application.Features.TaskItem.Query.GetTaskItemList;
+using Demo.Application.Features.TaskItem.Query.GetTaskListByStatus;
 using Demo.Application.Helper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -73,9 +74,9 @@ namespace Demo.Api.Controller
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-       public async Task<IActionResult> DeleteTaskItem([FromBody] DeleteTaskItemCommand command)
+       public async Task<IActionResult> DeleteTaskItem([FromQuery] Guid id)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(new DeleteTaskItemCommand { Id = id });
             return Ok(result);
         }
         [HttpGet("TaskItems")]
@@ -98,6 +99,17 @@ namespace Demo.Api.Controller
         {
             var response = await _mediator.Send(new GetTaskItedDetailsQuery() { Id = id });
             return Ok(response);    
+        }
+        [HttpGet("TasksByStatus")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(PaginationList<GetTaskListByStatusDto>), StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult<PaginationList<GetTaskListByStatusDto>>> GetAllByStatus([FromQuery] int page, [FromQuery] int pageSize, [FromQuery] Domain.Enums.TaskStatus? taskStatus)
+        {
+            var response = await _mediator.Send(new GetTaskListByStatusQuery() { Page = page, Size = pageSize, TaskStatus = taskStatus });
+
+            return Ok(response);
         }
     }
 }

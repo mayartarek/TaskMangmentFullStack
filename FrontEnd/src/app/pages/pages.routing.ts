@@ -10,5 +10,10 @@ export const PagesRoutes: Routes = [
     loadChildren: () =>
       import('./Project/project-module').then((m) => m.ProjectRoutes),
   },
+   {
+    path: 'task-item',
+    loadChildren: () =>
+      import('./Task/task-module').then((m) => m.TaskRoutes),
+  },
   
 ]
